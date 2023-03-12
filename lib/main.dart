@@ -1,13 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelio/src/config/app_routes.dart';
-import 'package:hotelio/src/config/session.dart';
-import 'package:hotelio/src/features/home/screens/home_screen.dart';
-import 'package:hotelio/src/features/intro/screens/intro_screen.dart';
-import 'package:hotelio/src/models/user.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 import 'firebase_options.dart';
+
+import '../src/config/app_colors.dart';
+import '../src/config/app_routes.dart';
+import '../src/config/session.dart';
+import '../src/features/home/screens/home_screen.dart';
+import '../src/features/intro/screens/intro_screen.dart';
+import '../src/models/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,8 +26,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(),
+        scaffoldBackgroundColor: AppColor.bgScaffold,
+        primaryColor: AppColor.primaryC,
+        colorScheme: const ColorScheme.light(
+          primary: AppColor.primaryC,
+          secondary: AppColor.secondaryC,
+        ),
+      ),
       routes: {
         '/': (context) {
           return FutureBuilder(
