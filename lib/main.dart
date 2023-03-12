@@ -1,6 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelio/src/config/app_routes.dart';
+import 'package:hotelio/src/features/home/screens/home_screen.dart';
+import 'package:hotelio/src/features/intro/screens/intro_screen.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  initializeDateFormatting('en_US');
   runApp(const MyApp());
 }
 
@@ -9,6 +21,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      routes: {
+        '/': (context) {
+          return Intro();
+        },
+        AppRoute.intro: (context) => Intro(),
+        AppRoute.home: (context) => Home(),
+        AppRoute.signin: (context) => Home(),
+        AppRoute.detail: (context) => Home(),
+        AppRoute.checkout: (context) => Home(),
+        AppRoute.checkoutSuccess: (context) => Home(),
+        AppRoute.detailBooking: (context) => Home(),
+      },
+      home: Scaffold(),
+    );
   }
 }
