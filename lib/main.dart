@@ -43,22 +43,21 @@ class MyApp extends StatelessWidget {
             future: Session.getUser(),
             builder: (context, AsyncSnapshot<User> snapshot) {
               if (snapshot.data == null || snapshot.data!.id == null) {
-                return Intro();
+                return const Intro();
               } else {
-                return Home();
+                return HomeScreen();
               }
             },
           );
         },
-        AppRoute.intro: (context) => Intro(),
-        AppRoute.home: (context) => Home(),
-        AppRoute.signin: (context) => Home(),
-        AppRoute.detail: (context) => Home(),
-        AppRoute.checkout: (context) => Home(),
-        AppRoute.checkoutSuccess: (context) => Home(),
-        AppRoute.detailBooking: (context) => Home(),
+        AppRoute.intro: (context) => const Intro(),
+        AppRoute.home: (context) => HomeScreen(),
+        AppRoute.signin: (context) => HomeScreen(),
+        AppRoute.detail: (context) => HomeScreen(),
+        AppRoute.checkout: (context) => HomeScreen(),
+        AppRoute.checkoutSuccess: (context) => HomeScreen(),
+        AppRoute.detailBooking: (context) => HomeScreen(),
       },
-      home: Scaffold(),
     );
   }
 }
