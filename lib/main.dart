@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelio/src/config/app_routes.dart';
+import 'package:hotelio/src/config/session.dart';
 import 'package:hotelio/src/features/home/screens/home_screen.dart';
 import 'package:hotelio/src/features/intro/screens/intro_screen.dart';
+import 'package:hotelio/src/models/user.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'firebase_options.dart';
@@ -25,7 +27,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) {
-          return Intro();
+          return FutureBuilder(
+            future: Session.getUser(),
+            builder: (context, AsyncSnapshot<User> snapshot) {
+              if (snapshot.data == null || snapshot.data!.id == null) {
+                return Intro();
+              } else {
+                return Home();
+              }
+            },
+          );
         },
         AppRoute.intro: (context) => Intro(),
         AppRoute.home: (context) => Home(),
