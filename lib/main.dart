@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hotelio/src/features/signIn/screens/sign_in_screen.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'firebase_options.dart';
 
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
         },
         AppRoute.intro: (context) => const Intro(),
         AppRoute.home: (context) => HomeScreen(),
-        AppRoute.signin: (context) => HomeScreen(),
+        AppRoute.signin: (context) => SignInScreen(),
         AppRoute.detail: (context) => HomeScreen(),
         AppRoute.checkout: (context) => HomeScreen(),
         AppRoute.checkoutSuccess: (context) => HomeScreen(),

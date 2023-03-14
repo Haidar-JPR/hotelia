@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hotelio/src/config/app_assets.dart';
+import 'package:hotelio/src/config/app_routes.dart';
 import 'package:hotelio/src/widgets/custom_button.dart';
 
 class Intro extends StatelessWidget {
@@ -67,7 +69,9 @@ class Intro extends StatelessWidget {
                 // NOTE: Get Started Button
                 CustomButton(
                   name: 'Get Started',
-                  press: () {},
+                  press: () {
+                    Get.offNamed(AppRoute.signin);
+                  },
                   width: 0,
                 ),
               ],
