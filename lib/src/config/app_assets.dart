@@ -11,4 +11,5 @@ class AppAsset {
   static const history = 'assets/images/ic-history.png';
   static const payment = 'assets/images/ic-credit-card.png';
   static const gift = 'assets/images/ic-gift.png';
+  static const search = 'assets/images/ic-search.png';
 }

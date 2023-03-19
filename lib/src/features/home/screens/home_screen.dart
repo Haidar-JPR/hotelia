@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hotelio/src/config/app_assets.dart';
 import 'package:hotelio/src/config/app_colors.dart';
 import 'package:hotelio/src/controllers/homeC.dart';
+import 'package:hotelio/src/features/nearby/screen/nearby_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final homeC = Get.put(HomeC());
@@ -22,9 +23,7 @@ class HomeScreen extends StatelessWidget {
             child: Text('History'),
           );
         } else {
-          return Center(
-            child: Text('Nearby'),
-          );
+          return const Nearby();
         }
       }),
       bottomNavigationBar: Obx(() {
