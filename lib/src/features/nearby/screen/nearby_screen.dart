@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:hotelio/src/config/app_assets.dart';
 import 'package:hotelio/src/config/app_colors.dart';
+import 'package:hotelio/src/controllers/nearbyC.dart';
 
 class Nearby extends StatelessWidget {
-  const Nearby({super.key});
+  Nearby({super.key});
+  final cNearby = Get.put(NearbyC());
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +21,54 @@ class Nearby extends StatelessWidget {
           header(context),
           const SizedBox(height: 30),
           searchHotels(),
+          const SizedBox(height: 30),
+          categories(),
         ],
       ),
+    );
+  }
+
+  GetBuilder<NearbyC> categories() {
+    return GetBuilder<NearbyC>(
+      builder: (controller) {
+        return SizedBox(
+          height: 45,
+          child: ListView.builder(
+            itemCount: controller.categories.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              String category = controller.categories[index];
+              return Padding(
+                padding: EdgeInsets.only(
+                  left: index == 0 ? 16 : 8,
+                  top: 0,
+                  right: index == controller.categories.length - 1 ? 16 : 8,
+                  bottom: 0,
+                ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    controller.category = category;
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: category == controller.category
+                        ? AppColor.primaryC
+                        : Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    category,
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 

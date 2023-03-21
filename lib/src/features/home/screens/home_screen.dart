@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             child: Text('History'),
           );
         } else {
-          return const Nearby();
+          return Nearby();
         }
       }),
       bottomNavigationBar: Obx(() {

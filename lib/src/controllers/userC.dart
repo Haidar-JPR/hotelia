@@ -20,7 +20,7 @@ class UserC extends GetxController {
       response['success'] = true;
       response['message'] = 'Sign In Success';
       String uid = credential.user!.uid;
-      User user = await getWhereId(uid);
+      User user = await _getWhereId(uid);
       Session.saveUser(user);
     } on auth.FirebaseAuthException catch (e) {
       response['success'] = false;
@@ -36,11 +36,10 @@ class UserC extends GetxController {
     return response;
   }
 
-  static Future<User> getWhereId(String id) async {
+  static Future<User> _getWhereId(String id) async {
     DocumentReference<Map<String, dynamic>> ref =
         FirebaseFirestore.instance.collection('Users').doc(id);
     DocumentSnapshot<Map<String, dynamic>> doc = await ref.get();
-    print(doc.data());
     return User.fromJson(doc.data()!);
   }
 }
